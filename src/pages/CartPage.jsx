@@ -3,7 +3,8 @@ import { Card, CardContent, Typography, Button, Box, IconButton } from '@mui/mat
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { getCart, removeFromCart, updateCartItemQuantity } from '../services/cartService';
-import { createOrder } from '../services/orderService';
+import { getProductById } from '../services/productService'; // Make sure to adjust the import path accordingly
+import axios from 'axios';
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -30,11 +31,15 @@ const CartPage = () => {
     }
   };
 
-  const handleUpdateQuantity = async (productId, quantity) => {
+  const handleUpdateQuantity = async (productId, quantityChange) => {
     try {
-      await updateCartItemQuantity(productId, quantity);
+      const updatedProduct = cart.find(product => product.productId === productId);
+      if (updatedProduct.quantity + quantityChange < 1) {
+        return; // Prevent updating quantity to less than 1
+      }
+      await updateCartItemQuantity(productId, quantityChange);
       setCart(cart.map((product) => 
-        product.productId === productId ? { ...product, quantity: product.quantity + quantity } : product
+        product.productId === productId ? { ...product, quantity: product.quantity + quantityChange } : product
       ));
     } catch (error) {
       console.error('Error updating product quantity', error);
@@ -42,17 +47,39 @@ const CartPage = () => {
   };
 
   const handleCheckout = async () => {
-    const productIds = cart.map(product => product.productId);
-    const quantities = cart.map(product => product.quantity);
     try {
-      await createOrder(productIds, quantities);
-      alert('Order created successfully!');
-      setCart([]); // Limpiar el carrito después del checkout
+      const productDetailsPromises = cart.map(product => getProductById(product.productId));
+      const productDetailsResponses = await Promise.all(productDetailsPromises);
+      const productDetails = productDetailsResponses.map(response => response.data);
+  
+      const lineItems = productDetails.map(product => ({
+        price: product.stripePriceId,
+        quantity: cart.find(item => item.productId === product.id).quantity
+      }));
+  
+      console.log("Line Items:", lineItems); // Debug log for line items
+  
+      // Create Stripe checkout session
+      const response = await axios.post('http://localhost:3000/api/stripe/create-checkout-session', 
+        { line_items: lineItems }, 
+        { withCredentials: true }
+      );
+  
+      console.log("Response Status:", response.status); // Debug log for response status
+      console.log("Response Data:", response.data); // Debug log for response data
+  
+      if (response.data && response.data.url) {
+        window.open(response.data.url, '_blank'); // Opens the URL in a new tab
+      } else {
+        console.error('No URL returned in the response', response.data);
+        alert('Failed to create checkout session: No URL returned');
+      }
     } catch (error) {
-      console.error('Error creating order', error);
-      alert('Failed to create order');
+      console.error('Error creating checkout session:', error.response ? error.response.data : error.message);
+      alert('Failed to create checkout session: ' + (error.response ? error.response.data.message : error.message));
     }
   };
+  
 
   return (
     <Box className="cart-page" display="flex" flexDirection="column" alignItems="center">
