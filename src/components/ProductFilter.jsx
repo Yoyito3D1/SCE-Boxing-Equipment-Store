@@ -5,13 +5,13 @@ const ProductFilter = ({ searchTerm, setSearchTerm, brand, setBrand, type, setTy
   return (
     <Box display="flex" flexDirection="column" gap={4}>
       <TextField
-        label="Search"
+        label="Nom del producte"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Button onClick={handleSearch}>Search</Button>
+      <Button onClick={handleSearch}>Cercar</Button>
       <FormControl>
-        <Typography gutterBottom>Price Range (€)</Typography>
+        <Typography gutterBottom>Rang de Preus (€)</Typography>
         <Slider
           value={priceRange}
           onChange={(e, newValue) => setPriceRange(newValue)}
@@ -22,7 +22,7 @@ const ProductFilter = ({ searchTerm, setSearchTerm, brand, setBrand, type, setTy
         />
       </FormControl>
       <FormControl>
-        <InputLabel>Brand</InputLabel>
+        <InputLabel>Marques</InputLabel>
         <Select value={brand} onChange={(e) => setBrand(e.target.value)}>
           <MenuItem value=""><em>None</em></MenuItem> {/* Opción para indicar que no hay selección */}
           <MenuItem value="Leone">Leone</MenuItem>
@@ -33,7 +33,7 @@ const ProductFilter = ({ searchTerm, setSearchTerm, brand, setBrand, type, setTy
         </Select>
       </FormControl>
       <FormControl>
-        <InputLabel>Type</InputLabel>
+        <InputLabel>Tipus</InputLabel>
         <Select value={type} onChange={(e) => setType(e.target.value)}>
           <MenuItem value=""><em>None</em></MenuItem> {/* Opción para indicar que no hay selección */}
           <MenuItem value="Guants">Gloves</MenuItem>

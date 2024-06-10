@@ -23,4 +23,12 @@
   .product-detail-page button {
     margin-top: 16px;
   }
-  
+
+  .product-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    flex-direction: column;
+    text-align: center; /* Afegeix aquesta línia per centrar el text */
+  }

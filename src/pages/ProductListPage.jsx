@@ -4,7 +4,6 @@ import ProductFilter from '../components/ProductFilter';
 import Cart from '../components/Cart';
 import Navbar from '../components/Navbar';
 import '../styles/ProductListPage.css'; // Importa los estilos CSS
-import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
@@ -39,9 +38,6 @@ const ProductListPage = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Aquí es podria afegir codi per netejar les dades de sessió emmagatzemades localment
-  
-    // Redirigir a la pàgina d'inici de sessió
     navigate("/login");
   };
 
@@ -49,7 +45,6 @@ const ProductListPage = () => {
     <div className="product-list-page">
     <div className="navbar">
       <Navbar />
-      <button className="logout-button" onClick={handleLogout}>Tancar sessió</button>
     </div>
     <div className="main-content">
       <div className="filter-panel">

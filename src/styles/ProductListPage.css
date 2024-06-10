@@ -75,3 +75,9 @@
     top: 20px;;
     right: 20px; /* Ajusta aquest valor segons les teves necessitats */
   }
+
+  .top-left-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }

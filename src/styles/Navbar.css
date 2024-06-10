@@ -1,0 +1,28 @@
+.navbar-logo {
+    height: 100%; /* Ajusta aquest valor segons la teva necessitat */
+    width: 75px; /* Ajusta aquest valor segons la teva necessitat */
+  }
+
+  .navbar-title {
+    font-weight: bold; /* Fa que el text estigui en negreta */
+    margin-left: 20px; /* Mou el text 20 píxels a la dreta */
+  }
+
+  .logout-button {
+    margin-bottom: 40px; /* Afegeix un marge a la part inferior del botó */
+  }
+
+  .logout-button:hover {
+    background-color: #d3d3d3;
+    color: white;
+  }
+
+  .navbar-cart {
+    width: 50px;
+    height: 50px;
+    margin-right: 40px;
+  }
+
+  .navbar-cart:hover {
+    filter: brightness(0) invert(1);
+  }

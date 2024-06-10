@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById } from '../services/productService';
 import { addToCart } from '../services/cartService'; // Importa el servicio del carrito
@@ -6,6 +6,7 @@ import '../styles/ProductDetailPage.css'; // Importa los estilos CSS
 import { Button, IconButton, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import Navbar from '../components/Navbar'; // Importa el component Navbar
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -42,33 +43,37 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="product-detail-page">
-      <h1>{product.name}</h1>
-      <img src={`/images/${product.image}`} alt={product.name} /> {/* Ajustar la ruta de la imagen */}
-      <p>{product.description}</p>
-      <p>Price: €{product.price}</p>
-      <p className={product.stock > 0 ? 'stock-available' : 'stock-unavailable'}>
-        {product.stock > 0 ? 'Stock available' : 'Stock unavailable'}
-      </p>
-      {product.stock > 0 && (
-        <Box display="flex" alignItems="center" mt={2}>
-          <IconButton onClick={() => setQuantity(Math.max(quantity - 1, 1))}>
-            <RemoveIcon />
-          </IconButton>
-          <span>{quantity}</span>
-          <IconButton onClick={() => setQuantity(Math.min(quantity + 1, product.stock))}>
-            <AddIcon />
-          </IconButton>
-        </Box>
-      )}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleAddToCart}
-        disabled={product.stock <= 0}
-      >
-        Add to Cart
-      </Button>
+    <div>
+      <Navbar />
+      <div className="product-detail-container">
+        
+        <h1>{product.name}</h1>
+        <img src={`/images/${product.image}`} alt={product.name} /> {/* Ajustar la ruta de la imagen */}
+        <p>{product.description}</p>
+        <p>Price: €{product.price}</p>
+        <p className={product.stock > 0 ? 'stock-available' : 'stock-unavailable'}>
+          {product.stock > 0 ? 'Stock available' : 'Stock unavailable'}
+        </p>
+        {product.stock > 0 && (
+          <Box display="flex" alignItems="center" mt={2}>
+            <IconButton onClick={() => setQuantity(Math.max(quantity - 1, 1))}>
+              <RemoveIcon />
+            </IconButton>
+            <span>{quantity}</span>
+            <IconButton onClick={() => setQuantity(Math.min(quantity + 1, product.stock))}>
+              <AddIcon />
+            </IconButton>
+          </Box>
+        )}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddToCart}
+          disabled={product.stock <= 0}
+        >
+          Add to Cart
+        </Button>
+      </div>
     </div>
   );
 };
