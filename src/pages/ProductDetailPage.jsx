@@ -7,6 +7,7 @@ import { Button, IconButton, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Navbar from '../components/Navbar'; // Importa el component Navbar
+import axios from 'axios';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -38,6 +39,18 @@ const ProductDetailPage = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:3000/api/auth/logout', {}, { withCredentials: true });
+      // Aquí es podria afegir codi per netejar les dades de sessió emmagatzemades localment
+  
+      // Redirigir a la pàgina d'inici de sessió
+      navigate("/login");
+    } catch (error) {
+      console.error('Error during logout', error);
+    }
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -45,6 +58,7 @@ const ProductDetailPage = () => {
   return (
     <div>
       <Navbar />
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
       <div className="product-detail-container">
         
         <h1>{product.name}</h1>

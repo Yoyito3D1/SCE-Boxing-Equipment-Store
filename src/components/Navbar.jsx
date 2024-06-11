@@ -20,9 +20,6 @@ const Navbar = () => {
         <Link to="/cart">
           <img src={carrito} alt="Carrito" className="navbar-cart" />
         </Link>
-        <Link to="/login">
-          <Button color="inherit" variant="outlined" className="logout-button" style={{ color: 'white' }}>Logout</Button>
-        </Link>
       </Toolbar>
     </AppBar>
   );
