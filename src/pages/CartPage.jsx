@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, Button, Box, IconButton } from '@mui/material';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { getCart, removeFromCart, updateCartItemQuantity } from '../services/cartService';
@@ -101,16 +101,15 @@ const CartPage = () => {
     <div>
       <Navbar />
       <button className="logout-button" onClick={handleLogout}>Logout</button>
-      <Box className="cart-page" display="flex" flexDirection="column" alignItems="center">
+      <Box className="cart-page" display="flex" flexDirection="column" alignItems="center" justifyContent="center" marginTop="16px">
         <Typography variant="h4" component="div" gutterBottom>
-          Cart
+          Carrito de compra
         </Typography>
         {cart.map((product) => (
-          <Card key={product.productId} className="cart-item" sx={{ width: '80%', marginBottom: '16px' }}>
+          <Card key={product.productId} className="cart-item" sx={{ width: '80%', marginBottom: '16px', marginLeft: 'auto', marginRight: 'auto' }}>
               <CardMedia
                 component="img"
-                height="10%"
-                width="10%"
+                style={{ width: 'auto', height: '200px' }} // Ajusta aquest valor segons la teva necessitat
                 image={`/images/${product.product.image}`}
                 alt={product.product.name}
               />
@@ -119,20 +118,20 @@ const CartPage = () => {
                 {product.product.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Price: €{product.product.price * product.quantity}
+                Preu: €{product.product.price * product.quantity}
               </Typography>
               <Typography variant="body2" color="text.secondary" display="flex" alignItems="center">
-                Quantity: 
+                Quantitat: 
                 <IconButton onClick={() => handleUpdateQuantity(product.productId, -1)}>
                   <RemoveIcon />
                 </IconButton>
-                {product.quantity}
+                  {product.quantity}
                 <IconButton onClick={() => handleUpdateQuantity(product.productId, 1)}>
                   <AddIcon />
                 </IconButton>
               </Typography>
               <Button variant="contained" color="secondary" onClick={() => handleRemoveFromCart(product.productId)}>
-                Remove
+                Treure
               </Button>
             </CardContent>
           </Card>
@@ -141,7 +140,7 @@ const CartPage = () => {
           Total: €{cart.reduce((total, product) => total + product.product.price * product.quantity, 0)}
         </Typography>
         <Button variant="contained" color="primary" onClick={handleCheckout} sx={{ marginTop: '16px' }}>
-          Checkout
+          Pagament
         </Button>
       </Box>
     </div>

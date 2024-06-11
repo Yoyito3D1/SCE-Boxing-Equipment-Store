@@ -23,7 +23,7 @@ const RegisterPage = () => {
   return (
     <div className="container">
       <div className="login-box">
-        <h2>Register</h2>
+        <h2>Registrar</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -34,7 +34,7 @@ const RegisterPage = () => {
           <div>
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit">Registrar</button>
         </form>
         <p>Ja tens un compte? <a href="/login" className="forgot-password-link">Fes Login</a></p>
       </div>

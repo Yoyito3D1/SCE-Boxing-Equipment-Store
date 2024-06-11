@@ -5,7 +5,6 @@ import ProductFilter from '../components/ProductFilter';
 import Cart from '../components/Cart';
 import Navbar from '../components/Navbar';
 import '../styles/ProductListPage.css'; // Importa los estilos CSS
-import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {

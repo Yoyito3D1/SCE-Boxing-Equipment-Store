@@ -52,7 +52,7 @@ const ProductDetailPage = () => {
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>Carregant...</div>;
   }
 
   return (
@@ -64,7 +64,7 @@ const ProductDetailPage = () => {
         <h1>{product.name}</h1>
         <img src={`/images/${product.image}`} alt={product.name} /> {/* Ajustar la ruta de la imagen */}
         <p>{product.description}</p>
-        <p>Price: €{product.price}</p>
+        <p>Preu: €{product.price}</p>
         <p className={product.stock > 0 ? 'stock-available' : 'stock-unavailable'}>
           {product.stock > 0 ? 'Stock available' : 'Stock unavailable'}
         </p>
@@ -85,7 +85,7 @@ const ProductDetailPage = () => {
           onClick={handleAddToCart}
           disabled={product.stock <= 0}
         >
-          Add to Cart
+          Afegeix al carrito
         </Button>
       </div>
     </div>

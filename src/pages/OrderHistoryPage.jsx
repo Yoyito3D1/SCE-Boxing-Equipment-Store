@@ -29,11 +29,11 @@ const OrderHistoryPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Carregant...</div>;
   }
 
   if (error) {
-    return <div>Error fetching order history: {error.message}</div>;
+    return <div>Error carregant l'historial: {error.message}</div>;
   }
 
   const handleLogout = async () => {
@@ -53,15 +53,15 @@ const OrderHistoryPage = () => {
       <Navbar />
       <button className="logout-button" onClick={handleLogout}>Logout</button>
       <div className="order-history-page">
-        <h1>Order History</h1>
+        <h1>Historial de comandes</h1>
         {orders.length === 0 ? (
-          <p>No orders found</p>
+          <p>No s'han trobat comandes</p>
         ) : (
           orders.map((order) => (
             <div key={order.id} className="order-card">
-              <h2>Order ID: {order.id}</h2>
-              <p>Order Date: {new Date(order.createdAt).toLocaleDateString()}</p>
-              <h3>Products:</h3>
+              <h2>ID de la comanda: {order.id}</h2>
+              <p>Data de la comanda: {new Date(order.createdAt).toLocaleDateString()}</p>
+              <h3>Productes:</h3>
               <div className="products-list">
                 {order.products.map((product) => (
                   <Card key={product.productId} className="product-card">
@@ -77,10 +77,10 @@ const OrderHistoryPage = () => {
                         {product.productName}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Quantity: {product.quantity}
+                        Quantitat: {product.quantity}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Price: €{product.price}
+                        Preu: €{product.price}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
                         Subtotal: €{(product.price * product.quantity).toFixed(2)}
