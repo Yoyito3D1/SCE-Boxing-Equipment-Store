@@ -69,7 +69,7 @@ const CartPage = () => {
       console.log("Response Data:", response.data); // Debug log for response data
   
       if (response.data && response.data.url) {
-        window.open(response.data.url, '_blank'); // Opens the URL in a new tab
+        window.open(response.data.url, '_self'); // Opens the URL in a new tab
       } else {
         console.error('No URL returned in the response', response.data);
         alert('Failed to create checkout session: No URL returned');

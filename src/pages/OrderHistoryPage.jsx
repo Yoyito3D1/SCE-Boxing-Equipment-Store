@@ -48,7 +48,7 @@ const OrderHistoryPage = () => {
               {order.products.map((product) => (
                 <Card key={product.productId} className="product-card">
                   <div className="image-container">
-                  <CardMedia
+                    <CardMedia
                       component="img"
                       image={`/images/${product.imageUrl}`} // Construir la ruta completa de la imagen
                       alt={product.productName}
@@ -61,10 +61,17 @@ const OrderHistoryPage = () => {
                     <Typography variant="body2" color="text.secondary">
                       Quantity: {product.quantity}
                     </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Price: €{product.price}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Subtotal: €{(product.price * product.quantity).toFixed(2)}
+                    </Typography>
                   </CardContent>
                 </Card>
               ))}
             </div>
+            <h3>Total: €{order.total.toFixed(2)}</h3>
           </div>
         ))
       )}
