@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { getAllProducts, getProductByName } from '../services/productService';
 import ProductFilter from '../components/ProductFilter';
 import Cart from '../components/Cart';
 import Navbar from '../components/Navbar';
 import '../styles/ProductListPage.css'; // Importa los estilos CSS
+import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
@@ -37,14 +39,23 @@ const ProductListPage = () => {
   
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    navigate("/login");
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:3000/api/auth/logout', {}, { withCredentials: true });
+      // Aquí es podria afegir codi per netejar les dades de sessió emmagatzemades localment
+  
+      // Redirigir a la pàgina d'inici de sessió
+      navigate("/login");
+    } catch (error) {
+      console.error('Error during logout', error);
+    }
   };
 
   return (
     <div className="product-list-page">
     <div className="navbar">
       <Navbar />
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </div>
     <div className="main-content">
       <div className="filter-panel">

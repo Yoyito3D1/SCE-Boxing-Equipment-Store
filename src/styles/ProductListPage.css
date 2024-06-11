@@ -75,7 +75,24 @@
     top: 20px;;
     right: 20px; /* Ajusta aquest valor segons les teves necessitats */
   }
-
+  .logout-button {
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar en línea */
+    font-size: 16px; /* Tamaño de la fuente */
+    margin: 4px 2px; /* Márgenes */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  
+  .logout-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+  }
+  
   .top-left-image {
     position: absolute;
     top: 0;

@@ -9,7 +9,7 @@ import withAuth from './components/withAuth';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 
 const AuthProduct = withAuth(ProductListPage);
-const AuthCart = withAuth(CartPage); // Importa AuthCart
+const AuthCart = withAuth(CartPage); 
 const AuthProductDetail = withAuth(ProductDetailPage);
 const AuthOrderHistory = withAuth(OrderHistoryPage);
 
@@ -21,8 +21,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/products" element={<AuthProduct />} />
-        <Route path="/product/:id" element={<AuthProductDetail />} />
-        <Route path="/cart" element={<AuthCart />} /> {/* Añade esta ruta */}
+        <Route path="/product/:id" element={<AuthProductDetail />} /> 
+        <Route path="/cart" element={<AuthCart />} />
         <Route path="/order-history" element={<AuthOrderHistory />} />
       </Routes>
     </Router>
