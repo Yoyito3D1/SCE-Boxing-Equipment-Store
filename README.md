@@ -10,7 +10,7 @@ This is a React-based e-commerce web application that sells boxing equipment. It
 - Dynamic interface with React components.
 
 ## 🛠️ Technologies
-- React.js for the frontend
+- React.js for the frontend.
 - React Router for navigation.
 - CSS Modules for styling.
 - Context API for state management
