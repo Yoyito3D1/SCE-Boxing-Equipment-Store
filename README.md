@@ -5,7 +5,7 @@ This is a React-based e-commerce web application that sells boxing equipment. It
 ## 🚀 Features
 - Browse boxing gear: gloves, wraps, punching bags, accessories.
 - View product details and prices
-- Add products to a shopping cart.
+- Add products to a shopping cart
 - Responsive design for desktop and mobile
 - Dynamic interface with React components
 
