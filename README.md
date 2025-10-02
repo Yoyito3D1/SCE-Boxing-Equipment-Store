@@ -14,7 +14,7 @@ This is a React-based e-commerce web application that sells boxing equipment. It
 - React Router for navigation
 - CSS Modules for styling
 - Context API for state management
-- Node.js and npm for project setup
+- Node.js and npm for project setup.
 
 ## 📦 Installation & Setup
 1. Clone the repository:
